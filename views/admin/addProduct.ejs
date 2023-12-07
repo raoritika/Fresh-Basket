@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add Products - FreshBasket</title>
+    <style>
+      /* styles for form layout */
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 50px auto;
+        width: 60%;
+        max-width: 800px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+      }
+      input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin: 20px 0;
+        border: none;
+        border-radius: 5px;
+        background-color: #009944;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      input[type="submit"]:hover {
+        background-color: #009944;
+      }
+      input[type="submit"]:active {
+        background-color: #009944;
+      }
+      /* styles for page layout */
+      body {
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        text-align: center;
+        margin: 30px 0;
+        color: #009944;
+      }
+      .welcome {
+        text-align: center;
+        margin: 10px 0;
+        color: #009944;
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Add Products - FreshBasket</h1>
+    <form method="post" action="/addproducts">
+      <label for="prodname">Product Name:</label>
+      <input type="text" id="prodname" name="prodname" required />
+
+      <label for="description">Description:</label>
+      <input type="text" id="description" name="description" required />
+
+      <label for="price">Price:</label>
+      <input type="text" id="price" name="price" required />
+
+      <label for="saleprice">Sale Price:</label>
+      <input type="text" id="saleprice" name="saleprice" />
+
+      <% var len=results.length%>
+      <label for="category">Category</label>
+      <select id="category" name="category">
+      <%  for(var i=0;i<len;i++){%>
+            <option value="<%= results[i].id%>"><%=results[i].category%></option>
+      <%}%>
+      </select>
+
+      <input type="submit" value="Add Product" />
+    </form>
+  </body>
+</html>

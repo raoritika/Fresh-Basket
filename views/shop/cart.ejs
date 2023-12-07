@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>FreshBasket Cart</title>
+    <style>
+      body {
+        background-color: #ffffff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+      }
+
+      h1 {
+        color: #009944;
+        text-align: center;
+        font-size: 45px;
+      }
+
+      table {
+        border-collapse: collapse;
+        margin: 20px auto;
+        max-width: 900px;
+        width: 100%;
+        background-color: #ffffff;
+        border: 2px solid #009944;
+      }
+
+      th {
+        background-color: #009944;
+        color: #fff;
+        font-weight: bold;
+        padding: 10px;
+        text-align: left;
+      }
+
+      td {
+        border: 1px solid #0e9659;
+        padding: 10px;
+      }
+
+      td span {
+        font-weight: bold;
+      }
+
+      tfoot td {
+        background-color: #009944;
+        color: #fff;
+        font-weight: bold;
+        padding: 12px;
+        text-align: right;
+      }
+
+      tfoot td span {
+        color: #ffffff;
+        padding-right: 10px;
+      }
+
+      .checkout {
+        background-color: #009944;
+        border: none;
+        font-weight: bold;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 16px;
+        margin-right: 317px;
+        padding: 10px 20px;
+        float: right;
+      }
+    </style>
+  </head>
+  <h1>FreshBasket Cart</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Amount</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% var count=0 %> <% results.forEach((result) => { %>
+        <tr>
+          <td id="prodname"><%= result.prodname %></td>
+          <td>Rs. <span id="price"> <%= result.saleprice %> </span></td>
+          <td>
+            <!-- <a href="/incount/<%=result.id%>"><button>+</button></a>
+            <span id="quantity"> <%= result.quantity %> </span>
+            <a href="/decount/<%=result.id%>"><button>+</button></a> -->
+            <form action="/api/updatecartProduct/<%=result.id%>" method="POST">
+              <input
+                type="number"
+                name="quantity"
+                value="<%=result.quantity%>"
+              />
+              <button type="submit">Update</button>
+            </form>
+          </td>
+          <td>
+            Rs.
+            <span id="amount"> <%= result.saleprice * result.quantity %> </span>
+          </td>
+          <td>
+            <a href="/api/deletecartProduct/<%=result.id%>">
+              <button>Delete</button>
+            </a>
+          </td>
+        </tr>
+        <% count = count + result.saleprice * result.quantity %> <% }) %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <!-- <td colspan="3">Total Amount</td> -->
+          <td id="total" colspan="4">
+            Total Amount = Rs.
+            <span id="total"><%= count %></span>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <a href="/checkout/allcart"><button class="checkout">Check Out</button></a>
+  </body>
+</html>

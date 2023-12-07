@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Dashboard</title>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <style>
+      /* Dashboard styles */
+
+        #dashboard {
+            background-color: hsl(0, 0%, 100%);
+            margin-top: -30px;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        #dashboard h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #009944;
+        }
+
+        #dashboard p {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 50px;
+            color: #000000;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .buttons a {
+            background-color: #009944;
+            border-radius: 10px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+            margin: 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: all .2s ease-in-out;
+            width: 200px;
+            height: 200px;
+        }
+
+        .buttons a:hover {
+            background-color: #009944;
+        }
+
+        .buttons h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .buttons p {
+            font-size: 24px;
+            font-weight: 400;
+            color: #fff;
+            margin-bottom: 0;
+        }
+
+        .add-product {
+            background-color: rgba(0, 0, 0, 0.533)
+        }
+
+    </style>
+  </head>
+  <body>
+	<section id="dashboard">
+		<div class="container">
+			<h1>Welcome, Admin!</h1>
+			<p>This is your dashboard, where you can manage your products and orders.</p>
+
+			<div class="buttons">
+				<a href="addproducts" class="add-product">
+					<h2>Add Product</h2>
+					<p>Add a new product to your store</p>
+				</a>
+				<a href="editproducts" class="edit-products">
+					<h2>Edit Products</h2>
+					<p>Edit the details of your products</p>
+				</a>
+				<a href="/view_order_admin" class="tracking-history">
+					<h2>Tracking History</h2>
+					<p>View the tracking history of your orders</p>
+				</a>
+			</div>
+		</div>
+	</section>
+</html>

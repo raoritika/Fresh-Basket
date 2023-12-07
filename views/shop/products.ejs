@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Products</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+      }
+
+      .header {
+        background-color: #009944;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .cart {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      #cart {
+        margin-top: -30px;
+        margin-right: 20px;
+      }
+
+      #history {
+        margin-right: 100px;
+      }
+
+      .cart button {
+        background-color: white;
+        border: none;
+        color: #009944;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px 0;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+      }
+
+      .cart2 button {
+        background-color: white;
+        border: none;
+        color: #009944;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px 0;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        margin-right: 100px;
+      }
+
+      .cart button:hover {
+        background-color: #009944;
+        color: white;
+      }
+
+      .cart2 button:hover {
+        background-color: #009944;
+        color: white;
+      }
+
+      .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .product-card {
+        margin: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 300px;
+      }
+
+      .product-card img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .product-card h2 {
+        margin-top: 0;
+      }
+
+      .product-card p {
+        margin: 10px 0;
+        font-size: 14px;
+      }
+
+      .product-card p.price {
+        text-decoration: line-through;
+        color: #999;
+      }
+
+      .product-card p.sale-price {
+        color: #009944;
+        font-weight: bold;
+      }
+
+      .product-card button {
+        background-color: #009944;
+        border: none;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px 0;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .product-card button.buy-now {
+        background-color: #f44336;
+        margin-left: 10px;
+      }
+
+      .product-card button:hover {
+        background-color: #009944;
+      }
+
+      p {
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Welcome to FreshBasket!</h1>
+      <div class="cart" id="cart">
+        <a href="/viewcart"><button>View Cart</button></a>
+      </div>
+      <div class="cart2" id="history">
+        <a href="/view_order"><button>Order History</button></a>
+      </div>
+    </div>
+    <% if (results.length > 0) { %>
+    <div class="product-container">
+      <% results.forEach((result) => { %>
+      <div class="product-card">
+        <h2><%= result.prodname %></h2>
+        <p><%= result.description %></p>
+        <% if (result.saleprice && result.saleprice < result.price) { %>
+        <p class="price">Rs <%= result.price %></p>
+        <p class="sale-price">Rs <%= result.saleprice %></p>
+        <% } else { %>
+        <p>$<%= result.price %></p>
+        <% } %>
+        <a href="/addtocart/<%= result.id %>"><button>Add to Cart</button></a>
+        <a href="/buy/<%= result.id %>"
+          ><button class="buy-now">Buy Now</button></a
+        >
+      </div>
+      <% }); %>
+    </div>
+    <% } else { %>
+    <p>No products found.</p>
+    <% } %>
+  </body>
+</html>
